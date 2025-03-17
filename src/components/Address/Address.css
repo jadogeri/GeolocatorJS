@@ -1,0 +1,21 @@
+.location-result {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    
+  }
+  
+  .location-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .location-address {
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+  
+.row{
+  display:flex
+}

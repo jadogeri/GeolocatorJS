@@ -3,7 +3,7 @@ import {  useMap } from 'react-leaflet';
 import L from 'leaflet';
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import 'leaflet-routing-machine';
-import { redIcon, greenIcon } from './icons';
+import { redIcon, greenIcon } from './data/icons';
 
 
 
@@ -39,7 +39,7 @@ function Routing({ from, to }) {
               draggable :true
             }).bindPopup("sub route");
     
-          }
+        }
       },
     }).addTo(map);
 

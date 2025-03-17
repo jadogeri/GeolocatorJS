@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { MapContainer, TileLayer,  LayersControl } from 'react-leaflet';
-import Routing from "./RoutingControl"
+import Routing from "../../RoutingControl"
 import "./Map.css"
-import { maps } from './data/maps';
+import { maps } from '../../data/maps';
 
 
 function MapComponent({
