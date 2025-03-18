@@ -22,7 +22,7 @@ function MapComponent({
   return (
     <MapContainer 
       center={[center.lat,center.lng]} className="map-container"
-      keyboard={true} zoom={10} style={{ height: "400px" }}
+      keyboard={true} zoom={10} style={{ height: "400px" }} 
     >
       <LayersControl position="topleft">
         <LayersControl.BaseLayer checked name="Map">

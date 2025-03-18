@@ -6,9 +6,6 @@ import 'leaflet-routing-machine';
 import { redIcon, greenIcon } from './data/icons';
 import "./routing.css"
 
-
-
-
 const Routing =({ from, to }) =>{
   const map = useMap();
   var group = new L.featureGroup();
@@ -27,8 +24,8 @@ const Routing =({ from, to }) =>{
       lineOptions: {
         styles: [{className: 'animate'}] // Adding animate class
     },
-    addWaypoints:true,
     
+
       
       units:"imperial",
       createMarker: function(i, wp, n) {
