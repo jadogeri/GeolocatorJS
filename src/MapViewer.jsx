@@ -1,24 +1,22 @@
 import React, { useEffect, useState, useRef }  from 'react'
-import {useLocation, useNavigate} from 'react-router-dom';
 import Map from './components/Map/Map';
 import Address from "./components/Address/Address"
+import * as Coordinates from './data/coordinates';
+import {  useMap } from 'react-leaflet';
+import L from 'leaflet';
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import 'leaflet-routing-machine';
+import Loader from './components/Spinner';
 
 const MapViewer = () => {
   const inputRef = useRef(null);
-  const location = useLocation();  
-  const navigate = useNavigate();  
   const [address, setAddress] = useState('');
   const [results, setResults] = useState([]);
-  const [origin, setOrigin] = useState({lat : 29.951065,lng : -90.071533})
-  const [destination, setDestination] = useState({lat : 29.951439, lng: -90.081970})
-  const [coordinates, setCoordinates] = useState({lat : 29.951065,lon : -90.071533});    
-  useEffect(() => {
-    // Accessing the input element when the component mounts
-    if (inputRef.current) {
-      inputRef.current.focus(); // Focus the input field on initial render
-    }
-    updateRoute({lat :location.state.lat, lng :location.state.lng },setDestination)
-  }, []);
+  // const [origin, setOrigin] = useState({lat : 29.951065,lng : -90.071533})
+  // const [destination, setDestination] = useState({lat : 29.951439, lng: -90.081970})
+
+  const [origin, setOrigin] = useState(Coordinates.initialOrigin)
+  const [destination, setDestination] = useState(Coordinates.initialDestination)
 
   const updateRoute = (coordinates, callback) => {
     callback(coordinates)
@@ -48,15 +46,15 @@ const MapViewer = () => {
       
   return (
     <section className="flex-grow border-b py-5 pw-5 lg:grid lg:grid-cols-2 lg:py-10">
-      <div className="container mx-auto " style={{width:"300%", zIndex:"auto"}} >
+      <div className="container mx-auto " style={{width:"100%"}} >
         {
           <Map 
             destination={destination} origin={origin} name={"map"} 
-            center={destination} coordinates={coordinates}
-          />
+            center={destination} 
+          />          
         }
       </div>
-      <div className="mx-auto px-5 lg:px-5" style={{zIndex:400}}>
+      <div className="mx-auto px-5 lg:px-5" >
         <div>
           <input
             type="text" placeholder="Enter address" ref={inputRef}

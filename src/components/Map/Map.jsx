@@ -3,31 +3,28 @@ import { MapContainer, TileLayer,  LayersControl } from 'react-leaflet';
 import Routing from "../../RoutingControl"
 import "./Map.css"
 import { maps } from '../../data/maps';
+import {  useMap } from 'react-leaflet';
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import 'leaflet-routing-machine';
 
 
 function MapComponent({
-  coordinates,
+  //coordinates,
   destination,
   origin,
   center
 }) {
-  console.log("coordinates origin ============== ", coordinates)
+  console.log("coordinates origin ============== ", origin)
   console.log("coordinates destination ============== ", destination)
+  console.log("coordinates center ============== ", center)
 
-  const [from, setFrom] = useState([52.5200, 13.4050]); // Initial Berlin coordinates
-  const [to, setTo] = useState([48.8566, 2.3522]); // Initial Paris coordinates
-
-  const updateRoute = (newFrom, newTo) => {
-    setFrom([coordinates.lat,coordinates.lon]);
-    setTo(newTo);
-  };
 
   return (
     <MapContainer 
       center={[center.lat,center.lng]} className="map-container"
-      keyboard={true} zoom={6} style={{ height: "400px", width: "4" }}
+      keyboard={true} zoom={10} style={{ height: "400px" }}
     >
-      <LayersControl position="topright">
+      <LayersControl position="topleft">
         <LayersControl.BaseLayer checked name="Map">
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
