@@ -13,7 +13,6 @@ import Feeds from './layouts/sections/Feeds';
 import InfoBoard from './layouts/sections/InfoBoard';
 import Dashboard from './layouts/sections/Dashboard';
 import logo from "../src/assets/logo.jpg"
-
 function Test() {
     const Logo = () => {
         return (
