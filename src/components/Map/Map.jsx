@@ -23,12 +23,15 @@ function MapComponent({
     <MapContainer 
       center={[center.lat,center.lng]} className="map-container"
       keyboard={true} zoom={10} style={{ height: "400px" }} 
+
+     
     >
       <LayersControl position="topleft">
         <LayersControl.BaseLayer checked name="Map">
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url={maps.base}
+
           />
         </LayersControl.BaseLayer>
         <LayersControl.BaseLayer  name="Satelite">
@@ -47,6 +50,7 @@ function MapComponent({
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url={maps.topography}
+            maxZoom={15}
           />
         </LayersControl.BaseLayer>
       </LayersControl>        

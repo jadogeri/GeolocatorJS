@@ -1,9 +1,8 @@
 import './App.css';
-import MapViewer from './MapViewer';
-
+import Routes from "./Routes"
 function App() {
   return (
-<MapViewer />
+<Routes />
   );
 }
 

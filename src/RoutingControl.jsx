@@ -21,6 +21,7 @@ const Routing =({ from, to }) =>{
       autoRoute:true,  
       show:true,
       useZoomParameter:true,
+      
       lineOptions: {
         styles: [{className: 'animate'}] // Adding animate class
     },
