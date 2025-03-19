@@ -3,7 +3,6 @@ import { MapContainer, TileLayer,  LayersControl } from 'react-leaflet';
 import Routing from "../../RoutingControl"
 import "./Map.css"
 import { maps } from '../../data/maps';
-import {  useMap } from 'react-leaflet';
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import 'leaflet-routing-machine';
 
@@ -22,7 +21,7 @@ function MapComponent({
   return (
     <MapContainer 
       center={[center.lat,center.lng]} className="map-container"
-      keyboard={true} zoom={10} style={{ height: "400px" }} 
+      keyboard={true} zoom={10} style={{ height: "400px", zIndex: 0 }} 
 
      
     >
