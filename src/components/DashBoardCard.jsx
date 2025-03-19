@@ -5,12 +5,13 @@ const DashBoardCard = ({
     color,
     icon,
     value,
-    type
+    type,
+    onClick
 
 }) => {
   return (
-    <div className="w3-quarter">
-    <div className={`w3-container ${color} w3-padding-16`}>
+    <div className="w3-quarter" >
+    <div className={`w3-container ${color} w3-padding-16`} onClick={onClick} style={{cursor: "pointer"}}>
       <div className="w3-left">
         {icon}
 

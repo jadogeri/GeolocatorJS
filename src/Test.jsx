@@ -13,6 +13,7 @@ import Feeds from './layouts/sections/Feeds';
 import InfoBoard from './layouts/sections/InfoBoard';
 import Dashboard from './layouts/sections/Dashboard';
 import logo from "../src/assets/logo.jpg"
+// import Map from "./components/Map/Map.jsx"
 function Test() {
     const Logo = () => {
         return (
@@ -50,7 +51,8 @@ function Test() {
 
       <div className="w3-panel">
         <div className="w3-row-padding" style={{ margin: "0 -16px" }}>
-          <Regions />
+          {/* <Regions /> */}
+          {/* <Map /> */}
           <Feeds />
 
 
@@ -70,7 +72,6 @@ function Test() {
       <RecentComments />
 
       <br />
-      <InfoBoard />
 
       {/* Footer */}
       <Footer />
