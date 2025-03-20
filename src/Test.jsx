@@ -8,49 +8,49 @@ import GeneralStats from './layouts/sections/GeneralStats';
 import Countries from './layouts/sections/Countries';
 import RecentUsers from './layouts/sections/RecentUsers';
 import RecentComments from './layouts/sections/RecentComments';
-import Regions from './layouts/sections/Regions';
 import Feeds from './layouts/sections/Feeds';
-import InfoBoard from './layouts/sections/InfoBoard';
 import Dashboard from './layouts/sections/Dashboard';
-import logo from "../src/assets/logo.jpg"
+import { useSelector, useDispatch } from "react-redux";
+import {
+  incrementAfrica,
+  incrementAsia,
+  incrementAmericas,
+  incrementEurope
+}
+from "./redux/feature/continents/continentsSlice"
 
 
-import React, { useEffect, useState, useRef }  from 'react'
+import React, { useState, useRef }  from 'react'
 import MapComponent from './components/Map/Map';
-import Address from "./components/Address/Address"
 import * as Coordinates from './data/coordinates';
-import {  useMap } from 'react-leaflet';
-import L from 'leaflet';
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import 'leaflet-routing-machine';
-import Loader from './components/Spinner';
 // import Map from "./components/Map/Map.jsx"
-import Stat from './components/Stat';
 import DropDownHeader from './components/DropDownHeader';
 import { dropdownToggle } from './utils/dropdownToggle';
 import DropDownContent from './components/DropDownContent/DropDownContent';
 import openTab from './utils/openTab';
+import Logo from './components/logo';
+import TabContent from './components/TabContent';
 function Test() {
+    const dispatch = useDispatch();
+    const africaCount = useSelector((state) => state.continents.africa);
+    const asiaCount = useSelector((state) => state.continents.asia);
+    const americasCount = useSelector((state) => state.continents.americas);
+    const europeCount = useSelector((state) => state.continents.europe);
 
-    const inputRef = useRef(null);
+
     const originInputRef = useRef(null);
     const destinationInputRef = useRef(null);
-
-    const [address, setAddress] = useState('');
-    const [results, setResults] = useState([]);
     const [originResults, setOriginResults] = useState([]);
     const [destinationResults, setDestinationResults] = useState([]);
-
-    // const [origin, setOrigin] = useState({lat : 29.951065,lng : -90.071533})
-    // const [destination, setDestination] = useState({lat : 29.951439, lng: -90.081970})
   
     const [origin, setOrigin] = useState(Coordinates.initialOrigin)
     const [destination, setDestination] = useState(Coordinates.initialDestination)
   
-    const updateRoute = (coordinates, callback) => {
+    const updateCoordinates = (coordinates, callback) => {
       callback(coordinates)
-    };
-  
+    };  
     const handleSearch = async (setResults, setRoute, inputRef) => {
       console.log("handle search.......................",inputRef.current.value)
   
@@ -74,16 +74,7 @@ function Test() {
       }
     };
         
-    const Logo = () => {
-        return (
-            <img 
-                src={logo}
-                alt='logo'
-                style={{height : 30,width : 30, borderRadius : 15}}
-            
-            />
-        )
-    }
+
   return (
     <>
 
@@ -105,7 +96,18 @@ function Test() {
       {/* Header */}
       <Banner heading={"My Dashboard"}/>
 
-      <Dashboard />
+      <Dashboard 
+
+        africaCount={africaCount}
+        asiaCount={asiaCount}
+        americasCount={americasCount}
+        europeCount={europeCount}
+        africaCountHandler={()=>dispatch(incrementAfrica())}
+        asiaCountHandler={()=>dispatch(incrementAsia())}
+        americasCountHandler={()=>dispatch(incrementAmericas())}
+        europeCountHandler={()=>dispatch(incrementEurope())}      
+      
+      />
      
 
       <div className="w3-panel">
@@ -127,61 +129,25 @@ function Test() {
 <div className="w3-border">
 <div className="w3-bar w3-theme">
   <button className="w3-bar-item w3-button testbtn w3-padding-16" style={{ width: "50%",cursor: "pointer" }}
-    onClick={(event)=>{openTab(event,'London')}}>Origin</button>
+    onClick={(event)=>{openTab(event,'Origin')}}>Origin</button>
   <button className="w3-bar-item w3-button testbtn w3-padding-16" style={{ width: "50%",cursor: "pointer" }}
-    onClick={(event)=>{openTab(event,'Paris')}}>Destination</button>
+    onClick={(event)=>{openTab(event,'Destination')}}>Destination</button>
 </div>
 
-<div id="London" className="w3-container city w3-animate-opacity">
-<div className="mx-auto px-5 lg:px-5" >
-        <div>
-          <input
-            type="text" placeholder="Enter Origin" ref={originInputRef}
-          />
-          <button onClick={()=>{handleSearch(setOriginResults,setOrigin,originInputRef)}}>Search</button>     
-          <div>
-            <p>Found : {originResults.length} results</p> 
-          </div>
-          { originResults.length===0?
-              null:
-              originResults.map((item)=>{
-                return (
-                  <Address  
-                    key={item.place_id}  location={item.display_name} name={item.name}
-                    onClick={()=>{ updateRoute({lat :item.lat,lng : item.lon},setOrigin); }}                  
-                  />
-                )
-            })
-          }   
-        </div>
-      </div>
-</div>
-
-<div id="Paris" className="w3-container city w3-animate-opacity w3-hidden" style={{display:"none"}}>
-<div className="mx-auto px-5 lg:px-5" >
-        <div>
-          <input
-            type="text" placeholder="Enter destination" ref={destinationInputRef}
-          />
-          <button onClick={()=>{handleSearch(setDestinationResults,setDestination,destinationInputRef)}}>Search</button>     
-          <div>
-            <p>Found : {destinationResults.length} results</p> 
-          </div>
-          { destinationResults.length===0?
-              null:
-              destinationResults.map((item)=>{
-                return (
-                  <Address  
-                    key={item.place_id}  location={item.display_name} name={item.name}
-                    onClick={()=>{ updateRoute({lat :item.lat,lng : item.lon},setDestination); }}                  
-                  />
-                )
-            })
-          }   
-        </div>
-      </div>
-</div>
-
+<TabContent 
+  id="Origin" placeholder="Enter Origin" ref={originInputRef}
+  handleSearch={handleSearch} setResults={setOriginResults}
+  results={originResults} setRoute={setOrigin}
+  updateCoordinates={updateCoordinates} display={"block"}  hidden=""
+  
+/>
+<TabContent 
+  id="Destination" placeholder="Enter Destination" ref={destinationInputRef}
+  handleSearch={handleSearch} setResults={setDestinationResults}
+  results={destinationResults} setRoute={setDestination}
+  updateCoordinates={updateCoordinates} hidden="w3-hidden" style={{display:"none"}}
+  
+/>
 </div>
           </DropDownContent>
 
