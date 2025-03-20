@@ -19,9 +19,9 @@ export const store = configureStore({
   reducer: {
    //[apiSlice.reducerPath]: apiSlice.reducer,
     //auth: authReducer,    
-    [userApiSlice.reducerPath] : userApiSlice.reducer,
-    [businessApiSlice.reducerPath] : businessApiSlice.reducer,
-    session : sessionReducer,
+    // [userApiSlice.reducerPath] : userApiSlice.reducer,
+    // [businessApiSlice.reducerPath] : businessApiSlice.reducer,
+    // session : sessionReducer,
     continents : continentsReducer,
   },
   preloadedState: persistedState,

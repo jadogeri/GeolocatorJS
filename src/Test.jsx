@@ -39,6 +39,7 @@ function Test() {
     const americasCount = useSelector((state) => state.continents.americas);
     const europeCount = useSelector((state) => state.continents.europe);
 
+    console.log("starting values of count ==== ", africaCount,asiaCount,americasCount)
 
     const originInputRef = useRef(null);
     const destinationInputRef = useRef(null);
@@ -101,11 +102,11 @@ function Test() {
         africaCount={africaCount}
         asiaCount={asiaCount}
         americasCount={americasCount}
-        europeCount={europeCount}
-        africaCountHandler={()=>dispatch(incrementAfrica())}
-        asiaCountHandler={()=>dispatch(incrementAsia())}
-        americasCountHandler={()=>dispatch(incrementAmericas())}
-        europeCountHandler={()=>dispatch(incrementEurope())}      
+        europeCount={europeCount}       
+        africaCountHandler={()=>{dispatch(incrementAfrica())}}
+        asiaCountHandler={()=>{dispatch(incrementAsia())}}
+        americasCountHandler={()=>{dispatch(incrementAmericas())}}
+        europeCountHandler={()=>{dispatch(incrementEurope())}}      
       
       />
      

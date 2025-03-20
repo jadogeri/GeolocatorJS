@@ -2,7 +2,7 @@
 const saveState = (state) => {
     try {
       const serializedState = JSON.stringify(state);
-      localStorage.setItem('geolocatorReduxState', serializedState);
+      localStorage.setItem('geolocator', serializedState);
     } catch (err) {
       console.error('Error saving state:', err);
     }
@@ -11,7 +11,7 @@ const saveState = (state) => {
   // Load state from LocalStorage
  const loadState = () => {
     try {
-      const serializedState = localStorage.getItem('geolocatorReduxState');
+      const serializedState = localStorage.getItem('geolocator');
       console.log("loading state..............................")
       console.log(serializedState)
       return serializedState ? JSON.parse(serializedState) : undefined;
