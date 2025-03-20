@@ -25,11 +25,22 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import 'leaflet-routing-machine';
 import Loader from './components/Spinner';
 // import Map from "./components/Map/Map.jsx"
+import Stat from './components/Stat';
+import DropDownHeader from './components/DropDownHeader';
+import { dropdownToggle } from './utils/dropdownToggle';
+import DropDownContent from './components/DropDownContent/DropDownContent';
+import openTab from './utils/openTab';
 function Test() {
 
     const inputRef = useRef(null);
+    const originInputRef = useRef(null);
+    const destinationInputRef = useRef(null);
+
     const [address, setAddress] = useState('');
     const [results, setResults] = useState([]);
+    const [originResults, setOriginResults] = useState([]);
+    const [destinationResults, setDestinationResults] = useState([]);
+
     // const [origin, setOrigin] = useState({lat : 29.951065,lng : -90.071533})
     // const [destination, setDestination] = useState({lat : 29.951439, lng: -90.081970})
   
@@ -40,18 +51,19 @@ function Test() {
       callback(coordinates)
     };
   
-    const handleSearch = async () => {
-      console.log("handle search.......................")
+    const handleSearch = async (setResults, setRoute, inputRef) => {
+      console.log("handle search.......................",inputRef.current.value)
   
       try {
         const response = await fetch(
           `https://nominatim.openstreetmap.org/search?q=${inputRef.current.value}&format=json`
         );
         const data = await response.json();
+        console.log(data)
         if (data.length > 0) {
           setResults(data)
           alert(JSON.stringify(data))
-          setOrigin({ lat: data[0].lat, lng: data[0].lon });
+          setRoute({ lat: data[0].lat, lng: data[0].lon });
   
         } else {
           alert('Address not found');
@@ -104,6 +116,76 @@ function Test() {
             destination={destination} origin={origin} name={"map"} 
             center={destination} 
           />   
+          <DropDownHeader 
+                className="w3-container w3-center w3-padding w3-red"
+                style={{ width: "100%",cursor: "pointer" }}
+                type="Bounce Rate" value="75%"
+                onClick={()=>{dropdownToggle("myDropdown")}}
+          />
+          <DropDownContent>
+          <h2 className="w3-center">Tabs</h2>
+<div className="w3-border">
+<div className="w3-bar w3-theme">
+  <button className="w3-bar-item w3-button testbtn w3-padding-16" style={{ width: "50%",cursor: "pointer" }}
+    onClick={(event)=>{openTab(event,'London')}}>Origin</button>
+  <button className="w3-bar-item w3-button testbtn w3-padding-16" style={{ width: "50%",cursor: "pointer" }}
+    onClick={(event)=>{openTab(event,'Paris')}}>Destination</button>
+</div>
+
+<div id="London" className="w3-container city w3-animate-opacity">
+<div className="mx-auto px-5 lg:px-5" >
+        <div>
+          <input
+            type="text" placeholder="Enter Origin" ref={originInputRef}
+          />
+          <button onClick={()=>{handleSearch(setOriginResults,setOrigin,originInputRef)}}>Search</button>     
+          <div>
+            <p>Found : {originResults.length} results</p> 
+          </div>
+          { originResults.length===0?
+              null:
+              originResults.map((item)=>{
+                return (
+                  <Address  
+                    key={item.place_id}  location={item.display_name} name={item.name}
+                    onClick={()=>{ updateRoute({lat :item.lat,lng : item.lon},setOrigin); }}                  
+                  />
+                )
+            })
+          }   
+        </div>
+      </div>
+</div>
+
+<div id="Paris" className="w3-container city w3-animate-opacity w3-hidden" style={{display:"none"}}>
+<div className="mx-auto px-5 lg:px-5" >
+        <div>
+          <input
+            type="text" placeholder="Enter destination" ref={destinationInputRef}
+          />
+          <button onClick={()=>{handleSearch(setDestinationResults,setDestination,destinationInputRef)}}>Search</button>     
+          <div>
+            <p>Found : {destinationResults.length} results</p> 
+          </div>
+          { destinationResults.length===0?
+              null:
+              destinationResults.map((item)=>{
+                return (
+                  <Address  
+                    key={item.place_id}  location={item.display_name} name={item.name}
+                    onClick={()=>{ updateRoute({lat :item.lat,lng : item.lon},setDestination); }}                  
+                  />
+                )
+            })
+          }   
+        </div>
+      </div>
+</div>
+
+</div>
+          </DropDownContent>
+
+
           <Feeds />
 
 

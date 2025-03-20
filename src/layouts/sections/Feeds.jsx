@@ -4,7 +4,7 @@ import Feed from '../../components/Feed';
 const Feeds = () => {
   return (
     <section>
-      <div className="w3-twothird">
+      <div className="w3-twothird" style={{zIndex:0}}>
             <h5>Feeds</h5>
             <table className="w3-table w3-striped w3-white">
               <tbody>
