@@ -103,13 +103,12 @@ function Test() {
         asiaCount={asiaCount}
         americasCount={americasCount}
         europeCount={europeCount}       
-        africaCountHandler={()=>{dispatch(incrementAfrica())}}
-        asiaCountHandler={()=>{dispatch(incrementAsia())}}
-        americasCountHandler={()=>{dispatch(incrementAmericas())}}
-        europeCountHandler={()=>{dispatch(incrementEurope())}}      
+        africaCountHandler={()=>{dispatch(incrementAfrica());updateCoordinates(Coordinates.africaCoordinates2,setOrigin);updateCoordinates(Coordinates.africaCoordinates,setDestination);}}
+        asiaCountHandler={()=>{dispatch(incrementAsia());updateCoordinates(Coordinates.asiaCoordinates,setDestination);}}
+        americasCountHandler={()=>{dispatch(incrementAmericas());updateCoordinates(Coordinates.americasCoordinates2,setOrigin);;updateCoordinates(Coordinates.americasCoordinates,setDestination);}}
+        europeCountHandler={()=>{dispatch(incrementEurope());updateCoordinates(Coordinates.europeCoordinates,setDestination);}}      
       
       />
-     
 
       <div className="w3-panel">
         <div className="w3-row-padding" style={{ margin: "0 -16px" }}>
@@ -159,10 +158,10 @@ function Test() {
         </div>
       </div>
       <hr />
-      <GeneralStats />
+      {/* <GeneralStats />
 
       <hr />
-      <Countries />
+      <Countries /> */}
 
       <hr />
 
