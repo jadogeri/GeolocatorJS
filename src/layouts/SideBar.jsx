@@ -59,18 +59,12 @@ const SideBar = ({
           icon="fa fa-eye fa-fw" 
           name="Views"
         />       
-        <SideBarItem href="#" className="w3-bar-item w3-button w3-padding"
-          icon="fa fa-users fa-fw" 
-          name="Traffic"
-        />    
+  
         <SideBarItem href="#" className="w3-bar-item w3-button w3-padding"
           icon="fa fa-bullseye fa-fw" 
           name="Geo"
         />   
-        <SideBarItem href="#" className="w3-bar-item w3-button w3-padding"
-          icon="fa fa-diamond fa-fw" 
-          name="Orders"
-        />   
+
         <SideBarItem href="#" className="w3-bar-item w3-button w3-padding"
           icon="fa fa-bell fa-fw" 
           name="News"
