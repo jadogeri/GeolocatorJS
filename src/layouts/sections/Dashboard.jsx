@@ -18,7 +18,7 @@ const Dashboard = ({
 }) => {
   return (
     <section>
-        <div className="w3-row-padding w3-margin-bottom">
+        <div className="w3-row-padding ">
             <DashBoardCard 
                 color={"w3-red"} icon={ <FaEarthAmericas  className={`fa w3-xxxlarge`}/>}
                 value={americasCount} type={"Americas"}  onClick={americasCountHandler}              

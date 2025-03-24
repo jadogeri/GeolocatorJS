@@ -2,6 +2,7 @@ import React from 'react';
 import { w3_close } from '../utils/w3_close';
 import SideBarItem from '../components/SideBarItem';
 
+
 const SideBar = ({
   name,
 
@@ -21,21 +22,7 @@ const SideBar = ({
             style={{ width: 46 }}
           />
         </div>
-        <div className="w3-col s8 w3-bar">
-          <span>
-            Welcome, <strong>{name}</strong>
-          </span>
-          <br />
-          <a href="#" className="w3-bar-item w3-button">
-            <i className="fa fa-envelope" />
-          </a>
-          <a href="#" className="w3-bar-item w3-button">
-            <i className="fa fa-user" />
-          </a>
-          <a href="#" className="w3-bar-item w3-button">
-            <i className="fa fa-cog" />
-          </a>
-        </div>
+
       </div>
       <hr />
       <div className="w3-container">
@@ -51,36 +38,27 @@ const SideBar = ({
           <i className="fa fa-remove fa-fw" />
           &nbsp; Close Menu
         </a>
-        <SideBarItem href="#" className="w3-bar-item w3-button w3-padding w3-blue"
-          icon="fa fa-users fa-fw" 
-          name="Overview"
-        />
-        <SideBarItem href="#" className="w3-bar-item w3-button w3-padding"
-          icon="fa fa-eye fa-fw" 
-          name="Views"
-        />       
-  
-        <SideBarItem href="#" className="w3-bar-item w3-button w3-padding"
-          icon="fa fa-bullseye fa-fw" 
-          name="Geo"
-        />   
-
-        <SideBarItem href="#" className="w3-bar-item w3-button w3-padding"
-          icon="fa fa-bell fa-fw" 
-          name="News"
-        />   
-        <SideBarItem href="#" className="w3-bar-item w3-button w3-padding"
-          icon="fa fa-bank fa-fw" 
-          name="General"
-        />   
-        <SideBarItem href="#" className="w3-bar-item w3-button w3-padding"
+        <SideBarItem  className="w3-bar-item w3-button w3-padding"
           icon="fa fa-history fa-fw" 
-          name="History"
+          name="Home" id="home"
+
         />  
-        <SideBarItem href="#" className="w3-bar-item w3-button w3-padding"
+        <SideBarItem  className="w3-bar-item w3-button w3-padding"
+          icon="fa fa-bank fa-fw" 
+          name="Contact"   id="contact"
+
+        />   
+        <SideBarItem  className="w3-bar-item w3-button w3-padding"
+          icon="fa fa-history fa-fw" 
+          name="About" id="about"
+
+        />  
+        <SideBarItem  className="w3-bar-item w3-button w3-padding"
           icon="fa fa-cog fa-fw" 
-          name="Settings"
+          name="Credits"  id="credits"
+
         />  
+ 
         <br />
         <br />
       </div>
@@ -89,3 +67,5 @@ const SideBar = ({
 }
 
 export default SideBar;
+
+

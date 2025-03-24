@@ -1,0 +1,8 @@
+
+  li{
+    color : blue;
+  }
+
+  li:hover{
+    color: purple;
+  }

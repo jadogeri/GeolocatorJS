@@ -4,11 +4,6 @@ import Banner from './layouts/Banner';
 import Header from './layouts/Header';
 import SideBar from './layouts/SideBar';
 import { w3_close } from './utils/w3_close';
-import GeneralStats from './layouts/sections/GeneralStats';
-import Countries from './layouts/sections/Countries';
-import RecentUsers from './layouts/sections/RecentUsers';
-import RecentComments from './layouts/sections/RecentComments';
-import Feeds from './layouts/sections/Feeds';
 import Dashboard from './layouts/sections/Dashboard';
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -18,8 +13,6 @@ import {
   incrementEurope
 }
 from "./redux/feature/continents/continentsSlice"
-
-
 import React, { useState, useRef }  from 'react'
 import MapComponent from './components/Map/Map';
 import * as Coordinates from './data/coordinates';
@@ -32,6 +25,9 @@ import DropDownContent from './components/DropDownContent/DropDownContent';
 import openTab from './utils/openTab';
 import Logo from './components/logo';
 import TabContent from './components/TabContent';
+import About from './views/About';
+import Contact from './views/Contact';
+import Credit from './views/Credits';
 function Test() {
     const dispatch = useDispatch();
     const africaCount = useSelector((state) => state.continents.africa);
@@ -95,6 +91,7 @@ function Test() {
     {/* !PAGE CONTENT! */}
     <div className="w3-main" style={{ marginLeft: 300, marginTop: 43 }}>
       {/* Header */}
+      <div id="home" className="view">
       <Banner heading={"My Dashboard"}/>
 
       <Dashboard 
@@ -152,24 +149,15 @@ function Test() {
           </DropDownContent>
 
 
-          <Feeds />
-
 
         </div>
+        </div>
       </div>
-      <hr />
-      {/* <GeneralStats />
+      <About />
+      <Contact />
+      <Credit />
 
       <hr />
-      <Countries /> */}
-
-      <hr />
-
-      <RecentUsers />
-
-      <hr />
-      <RecentComments />
-
       <br />
 
       {/* Footer */}
@@ -183,3 +171,6 @@ function Test() {
 }
 
 export default Test;
+
+
+//div id="home" style={{display :"none"}}

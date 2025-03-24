@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Test from './Test';
+import Test from './Home';
 import MapViewer from './MapViewer';
 
 const ProjectRoutes = () => {
