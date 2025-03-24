@@ -2,11 +2,11 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="w3-container w3-padding-16 w3-light-grey">
-    <h4>FOOTER</h4>
-    <p>
+    <footer className="w3-container w3-light-grey"
+    style={{width: "100%"}}>
+    <p style={{justifySelf: "center",alignSelf: "center"}}>
       Powered by{" "}
-      <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">
+      <a  href="https://www.w3schools.com/w3css/default.asp" target="_blank">
         w3.css
       </a>
     </p>

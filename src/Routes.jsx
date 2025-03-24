@@ -1,15 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Test from './Home';
-import MapViewer from './MapViewer';
+import Home from './Home';
 
 const ProjectRoutes = () => {
   return (
 
 	<BrowserRouter >
 		<Routes >				
-			<Route path="/map" element={<MapViewer />  } />
-			<Route path="/" element={<Test />  }  index/>
+			<Route path="/" element={<Home />  }  index/>
 		</Routes>
 	</BrowserRouter>
 
